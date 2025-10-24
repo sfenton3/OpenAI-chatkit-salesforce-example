@@ -15,19 +15,28 @@ This Salesforce DX project provides a proof-of-concept for embedding OpenAI Chat
 - **Named Credential**: `openAI.namedCredential-meta.xml` securely stores API credentials for outbound calls.
 - **Custom Object**: `Agent_Settings__c` stores configuration such as workflow IDs.
 
-## Setup Instructions
+
+## Automated Scratch Org Setup & Deployment
+
+You can automatically create a Salesforce scratch org and deploy all source code using the included script:
 
 1. **Clone the repository**
-2. **Authorize your Salesforce org**
+2. **Authorize your Dev Hub org**
 	```
-	sfdx auth:web:login -a <your-org-alias>
+	sf org login web --set-default-dev-hub --alias MyHub
 	```
-3. **Deploy the source to your org**
+3. **Create and deploy to a scratch org**
 	```
-	sfdx force:source:deploy -p force-app
+	npm run scratch:deploy
 	```
+	This will:
+	- Create a scratch org using the definition in `config/project-scratch-def.json`
+	- Deploy all source code
+	- Assign the required permission set
+	- Open the org in your browser
+
 4. **Configure Named Credential**
-	- Update `openAI.namedCredential-meta.xml` with your OpenAI API credentials.
+	- Update `openAI.namedCredential-meta.xml` with your OpenAI API credentials (see below).
 5. **Assign permissions**
 	- Ensure users have access to the custom object and Apex class.
 6. **Add the LWC to a Lightning page**
@@ -65,12 +74,16 @@ Once deployed, users can interact with the ChatKit widget directly in Salesforce
 ---
 For questions or contributions, please open an issue or pull request.
 
-## Steps to Setup:
 
-1. Make sure you have an OpenAI Account and have deployed a Agent Builder
-2. Deploy a Agent Builder and copy workflow ID, fill in on Agent Builder custom setting.
-3. Generate an OpenAI API key on OpenAI profile page and copy key, fill in on named credential under password using this format `Bearer {APIKEY}`. Do not use brackets around API Key. Bearer must be write exactly with a capital B and a space between Bearer and the APIKEY.
-4. Add your scatch org or dev org domain as a whitelisted domain on OpenAI profile page
+## Steps to Setup OpenAI Integration
+
+1. Make sure you have an OpenAI Account and have deployed an Agent Builder.
+2. Deploy an Agent Builder and copy the workflow ID. Fill it in on the Agent Builder custom setting (`Agent_Settings__c`).
+3. Generate an OpenAI API key on your OpenAI profile page. Copy the key and fill it in on the Named Credential under password using this format:
+	- `Bearer {APIKEY}`
+	- Do not use brackets around the API Key.
+	- "Bearer" must be written exactly with a capital B and a space between Bearer and the APIKEY.
+4. Add your scratch org or dev org domain as a whitelisted domain on your OpenAI profile page.
 
 ## Troubleshooting steps
 1. Make sure OpenAI API key is entered on Named Credential

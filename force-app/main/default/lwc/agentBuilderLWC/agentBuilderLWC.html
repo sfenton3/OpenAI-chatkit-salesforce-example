@@ -1,5 +1,48 @@
 <template>
   <div style="background-color: white">
+    <lightning-button label="Help" onclick={openHelp} icon-name="utility:info" variant="brand"
+      style="margin-bottom: 1em;"></lightning-button>
+    <template if:true={showHelp}>
+      <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open"
+        style="z-index: 1000;">
+        <div class="slds-modal__container">
+          <header class="slds-modal__header">
+            <h2 class="slds-text-heading_medium">OpenAI Integration Help</h2>
+            <lightning-button-icon icon-name="utility:close" onclick={closeHelp} alternative-text="Close"
+              class="slds-modal__close"></lightning-button-icon>
+          </header>
+          <div class="slds-modal__content slds-p-around_medium">
+            <div class="slds-rich-text-editor__output">
+              <h3>Steps to Setup OpenAI Integration</h3>
+              <ol>
+                <li>Make sure you have an OpenAI Account and have deployed an Agent Builder.</li>
+                <li>Deploy an Agent Builder and copy the workflow ID. Fill it in on the Agent Builder custom setting
+                  (<code>Agent_Settings__c</code>).</li>
+                <li>Generate an OpenAI API key on your OpenAI profile page. Copy the key and fill it in on the Named
+                  Credential under password using this format:<br>
+                  <code>Bearer APIKEY</code><br>
+                  <small>Do not use brackets around the API Key. "Bearer" must be written exactly with a capital B and a
+                    space between Bearer and the APIKEY.</small>
+                </li>
+                <li>Add your scratch org or dev org domain as a whitelisted domain on your OpenAI profile page.</li>
+              </ol>
+              <h3>Troubleshooting steps</h3>
+              <ol>
+                <li>Make sure OpenAI API key is entered on Named Credential</li>
+                <li>Make sure Agent Builder custom setting has your Workflow ID and that the workflow is Deployed</li>
+                <li>Make sure you have your org whitelisted on openAI or you will get a verification error. It can take
+                  15 minutes for this to propogate</li>
+                <li>Make sure the CSP for the openAPI cdn is enabled, or you cannot use the iframe.</li>
+                <li>Make sure the Session settings in setup has
+                  <code>Turn on Trusted Mode for third-party static resources</code>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open" style="z-index: 999;"></div>
+    </template>
     <div class="chatkit-container" style="width: 500px; height: 500px"></div>
   </div>
 </template>

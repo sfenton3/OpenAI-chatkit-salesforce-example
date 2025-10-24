@@ -5,6 +5,15 @@ import chatkit from "@salesforce/resourceUrl/chatkit";
 
 export default class AgentBuilderLWC extends LightningElement {
   chatkitInitialized = false;
+  showHelp = false;
+
+  openHelp() {
+    this.showHelp = true;
+  }
+
+  closeHelp() {
+    this.showHelp = false;
+  }
 
   async renderedCallback() {
     if (this.chatkitInitialized) {
