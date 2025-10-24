@@ -1,18 +1,66 @@
-# Salesforce DX Project: Next Steps
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+# OpenAI ChatKit Salesforce Example
 
-## How Do You Plan to Deploy Your Changes?
+>This project demonstrates how to integrate OpenAI's ChatKit with Salesforce using Lightning Web Components (LWC), Apex, and Named Credentials.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+## Overview
 
-## Configure Your Salesforce DX Project
+This Salesforce DX project provides a proof-of-concept for embedding OpenAI ChatKit into Salesforce. It uses a custom LWC (`agentBuilderLWC`) and Apex controller (`AgentBuilderController.cls`) to securely create chat sessions and interact with OpenAI via Named Credentials.
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+## Main Components
 
-## Read All About It
+- **Apex Controller**: `AgentBuilderController.cls` handles session creation and communication with OpenAI's API.
+- **LWC**: `agentBuilderLWC` loads the ChatKit widget and connects it to the backend via Apex.
+- **Static Resource**: `chatkit.js` is the ChatKit widget loaded in the LWC.
+- **Named Credential**: `openAI.namedCredential-meta.xml` securely stores API credentials for outbound calls.
+- **Custom Object**: `Agent_Settings__c` stores configuration such as workflow IDs.
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+## Setup Instructions
+
+1. **Clone the repository**
+2. **Authorize your Salesforce org**
+	```
+	sfdx auth:web:login -a <your-org-alias>
+	```
+3. **Deploy the source to your org**
+	```
+	sfdx force:source:deploy -p force-app
+	```
+4. **Configure Named Credential**
+	- Update `openAI.namedCredential-meta.xml` with your OpenAI API credentials.
+5. **Assign permissions**
+	- Ensure users have access to the custom object and Apex class.
+6. **Add the LWC to a Lightning page**
+	- Drag `agentBuilderLWC` onto your desired Lightning page.
+
+## Usage
+
+Once deployed, users can interact with the ChatKit widget directly in Salesforce. The widget uses the Apex controller to create secure sessions and communicate with OpenAI.
+
+## Project Structure
+
+- `force-app/main/default/classes/AgentBuilderController.cls`: Apex backend logic
+- `force-app/main/default/lwc/agentBuilderLWC/`: LWC frontend
+- `force-app/main/default/staticresources/chatkit.js`: ChatKit widget
+- `force-app/main/default/namedCredentials/openAI.namedCredential-meta.xml`: API credentials
+- `force-app/main/default/objects/Agent_Settings__c/`: Custom object for configuration
+
+## Testing & Development
+
+- Run unit tests with:
+  ```
+  npm run test:unit
+  ```
+- Lint and format code:
+  ```
+  npm run lint
+  npm run prettier
+  ```
+
+## Resources
+
+- [OpenAI ChatKit Documentation](https://platform.openai.com/docs/chatkit)
+- [Salesforce DX Documentation](https://developer.salesforce.com/tools/vscode/)
+
+---
+For questions or contributions, please open an issue or pull request.
