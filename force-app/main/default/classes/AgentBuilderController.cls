@@ -5,7 +5,7 @@ public with sharing class AgentBuilderController {
     @AuraEnabled
     public static String createSession(Boolean allowFileUpload) {
         // Replace 'OpenAI' with your Named Credential name
-        String endpoint = 'callout:OpenAI2/v1/chatkit/sessions';
+        String endpoint = 'callout:OpenAI/v1/chatkit/sessions';
         HttpRequest req = new HttpRequest();
         req.setEndpoint(endpoint);
         req.setMethod('POST');
