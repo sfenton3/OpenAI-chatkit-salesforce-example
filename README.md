@@ -59,7 +59,7 @@ Once deployed, users can interact with the ChatKit widget directly in Salesforce
 
 ## Resources
 
-- [OpenAI ChatKit Documentation](https://platform.openai.com/docs/chatkit)
+- [OpenAI ChatKit Documentation](https://openai.github.io/chatkit-js/)
 - [Salesforce DX Documentation](https://developer.salesforce.com/tools/vscode/)
 
 ---
