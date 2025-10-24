@@ -77,4 +77,4 @@ For questions or contributions, please open an issue or pull request.
 2. Make sure Agent Builder custom setting has your Workflow ID and that the workflow is Deployed
 3. Make sure you have your org whitelisted on openAI or you will get a verification error. It can take 15 minutes for this to propogate
 4. Make sure the CSP for the openAPI cdn is enabled, or you cannot use the iframe.
-5. ...
+5. Make sure the Session settings in setup has `Turn on Trusted Mode for third-party static resources` and 
