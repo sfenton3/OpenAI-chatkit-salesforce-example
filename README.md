@@ -40,9 +40,13 @@ You can automatically create a Salesforce scratch org and deploy all source code
 
 4. **Configure Named Credential**
 	- Update `openAI.namedCredential-meta.xml` with your OpenAI API credentials (see below).
-5. **Assign permissions**
+5. **Configure Custom Setting**
+  - Copy the Workflow ID and version into the Agent Settings custom setting.
+6. **Add Domain Whitelist on OpenAI Profile Security**
+  - Add the scratch org domain to your OpenAI security domain whitelist
+7. **Assign permissions**
 	- Ensure users have access to the custom object and Apex class.
-6. **Add the LWC to a Lightning page**
+8. **Add the LWC to a Lightning page**
 	- Drag `agentBuilderLWC` onto your desired Lightning page.
 
 ## Usage
