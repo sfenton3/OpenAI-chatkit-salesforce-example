@@ -9,7 +9,7 @@ This Salesforce DX project provides a proof-of-concept for embedding OpenAI Chat
 
 ## Main Components
 
-- **Apex Controller**: `AgentBuilderController.cls` handles session creation and communication with OpenAI's API.
+- **Apex Controller**: `AgentBuilderController.cls` handles session creation.
 - **LWC**: `agentBuilderLWC` loads the ChatKit widget and connects it to the backend via Apex.
 - **Static Resource**: `chatkit.js` is the ChatKit widget loaded in the LWC.
 - **Named Credential**: `openAI.namedCredential-meta.xml` securely stores API credentials for outbound calls.
@@ -64,3 +64,17 @@ Once deployed, users can interact with the ChatKit widget directly in Salesforce
 
 ---
 For questions or contributions, please open an issue or pull request.
+
+## Steps to Setup:
+
+1. Make sure you have an OpenAI Account and have deployed a Agent Builder
+2. Deploy a Agent Builder and copy workflow ID, fill in on Agent Builder custom setting.
+3. Generate an OpenAI API key on OpenAI profile page and copy key, fill in on named credential under password.
+4. Add your scatch org or dev org domain as a whitelisted domain on OpenAI profile page
+
+## Troubleshooting steps
+1. Make sure OpenAI API key is entered on Named Credential
+2. Make sure Agent Builder custom setting has your Workflow ID and that the workflow is Deployed
+3. Make sure you have your org whitelisted on openAI or you will get a verification error. It can take 15 minutes for this to propogate
+4. Make sure the CSP for the openAPI cdn is enabled, or you cannot use the iframe.
+5. ...
