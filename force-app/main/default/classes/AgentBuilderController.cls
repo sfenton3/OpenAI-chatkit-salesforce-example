@@ -1,10 +1,9 @@
 /*
 * @description - Proof of concept class to use Open AI Agent builder in a SF LWC
 */
-public with sharing class AgentBuilderController {
+public without sharing class AgentBuilderController {
     @AuraEnabled
     public static String createSession(Boolean allowFileUpload) {
-        // Replace 'OpenAI' with your Named Credential name
         String endpoint = 'callout:OpenAI/v1/chatkit/sessions';
         HttpRequest req = new HttpRequest();
         req.setEndpoint(endpoint);
@@ -16,10 +15,11 @@ public with sharing class AgentBuilderController {
 
         // Enrich Session with SF information
         String workflowId = [SELECT Id, Workflow_ID__c FROM Agent_Settings__c LIMIT 1]?.Workflow_ID__c;
+        // Don't put on guest site...
         String userId = UserInfo.getUserId();
 
         // Create Session Body
-        sessionBody sb = new sessionBody(workflowId, userId, allowFileUpload);
+        SessionBody sb = new SessionBody(workflowId, userId, allowFileUpload);
         req.setBody(JSON.serialize(sb));
 
         try {
@@ -35,7 +35,7 @@ public with sharing class AgentBuilderController {
         }
     }
 
-    public class sessionBody {
+    public class SessionBody {
       Workflow workflow = new WorkFlow();
       String user = '';
       ChatkitConfiguration chatkit_configuration = new ChatkitConfiguration();
@@ -53,10 +53,10 @@ public with sharing class AgentBuilderController {
     }
 
     public class ChatkitConfiguration {
-        file_upload file_upload = new file_upload();
+        FileUpload file_upload = new FileUpload();
     }
 
-    public class File_upload {
+    public class FileUpload {
         public Boolean enabled = false;
     }
 }
