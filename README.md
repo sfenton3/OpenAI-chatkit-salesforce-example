@@ -1,5 +1,8 @@
 
+
 # OpenAI ChatKit Salesforce Example
+
+![Demo Screenshot](assets/OpenAIDemoScreen.png)
 
 >This project demonstrates how to integrate OpenAI's ChatKit with Salesforce using Lightning Web Components (LWC), Apex, and Named Credentials.
 
@@ -52,7 +55,7 @@ Once deployed, users can interact with the ChatKit widget directly in Salesforce
 - `force-app/main/default/lwc/agentBuilderLWC/`: LWC frontend
 - `force-app/main/default/staticresources/chatkit.js`: ChatKit widget
 - `force-app/main/default/namedCredentials/openAI.namedCredential-meta.xml`: API credentials
-- `force-app/main/default/objects/Agent_Settings__c/`: Custom object for configuration
+- `force-app/main/default/objects/Agent_Settings__c/`: Custom setting for configuration
 
 ## Testing & Development
 
