@@ -69,7 +69,7 @@ For questions or contributions, please open an issue or pull request.
 
 1. Make sure you have an OpenAI Account and have deployed a Agent Builder
 2. Deploy a Agent Builder and copy workflow ID, fill in on Agent Builder custom setting.
-3. Generate an OpenAI API key on OpenAI profile page and copy key, fill in on named credential under password using this format `Bearer {APIKEY}`. Do not use brackets around API Key. Bearer must be write exactly with a capital B.
+3. Generate an OpenAI API key on OpenAI profile page and copy key, fill in on named credential under password using this format `Bearer {APIKEY}`. Do not use brackets around API Key. Bearer must be write exactly with a capital B and a space between Bearer and the APIKEY.
 4. Add your scatch org or dev org domain as a whitelisted domain on OpenAI profile page
 
 ## Troubleshooting steps
