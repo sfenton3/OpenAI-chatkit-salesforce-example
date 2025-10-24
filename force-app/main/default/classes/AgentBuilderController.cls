@@ -18,6 +18,12 @@ public without sharing class AgentBuilderController {
         // Don't put on guest site...
         String userId = UserInfo.getUserId();
 
+        if (workflowId == null) {
+          System.debug('Fill out Workflow_ID__c on Agent_Settings__c to get a valid Client token');
+          return '';
+        }
+
+
         // Create Session Body
         SessionBody sb = new SessionBody(workflowId, userId, allowFileUpload);
         req.setBody(JSON.serialize(sb));
